@@ -1,0 +1,40 @@
+@import '~@payloadcms/ui/scss';
+
+.riveo-purge-cache-plugin-container {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--base) * 1.5);
+  margin-top: calc(var(--base) * 1.25);
+
+  .render-title {
+    margin-bottom: calc(var(--base) * 1);
+  }
+
+  &__button-row {
+    .btn {
+      margin: 0;
+    }
+  }
+
+  &__purgers {
+    li div {
+      display: flex;
+      align-items: center;
+      justify-items: start;
+    }
+
+    svg {
+      height: calc(var(--base) * 1.5);
+      width: calc(var(--base) * 1.5);
+      margin-left: calc(var(--base) * 0.2);
+    }
+  }
+
+  &__errors {
+    ul {
+      .render-title {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
