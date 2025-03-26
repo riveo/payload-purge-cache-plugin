@@ -14,7 +14,9 @@
       "types": "./dist/exports/components.d.ts"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "payload",
     "cms",
@@ -31,7 +33,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier \"**/*.{cjs,js,ts,tsx,json,css}\" --write",
+    "format": "prettier \"**/*.{cjs,mjs,js,ts,tsx,json,css,md}\" --write",
     "format:check": "prettier \"**/*.{cjs,mjs,js,ts,tsx,json,css,md}\" --check",
     "fix": "eslint . --fix && prettier \"**/*.{cjs,mjs,js,ts,tsx,json,css,md}\" --write",
     "clean": "rimraf dist",

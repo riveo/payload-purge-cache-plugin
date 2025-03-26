@@ -15,7 +15,7 @@ A plugin for [PayloadCMS](https://payloadcms.com/) that integrates cache purging
 
 ```shell
 npm install @riveo/payload-purge-cache-plugin
-````
+```
 
 Then register it in your payload.config.ts:
 
@@ -39,14 +39,12 @@ export const config = buildConfig({
 
 ## Configuration
 
-
 The plugin accepts an object with the following properties:
 
 - `enabled: boolean`: Enable or disable the plugin. Default is `true`.
 - `path?: string`: URL path for the admin page. Default is `/riveo-purge-cache`.
 - `access?: AccessCallback`: Optional function to control access permissions.
 - `purgers: Purger[]`: Array of purger configurations to be triggered on cache purge.
-
 
 Example configuration:
 
@@ -89,7 +87,7 @@ Internally it calls `revalidatePath(basePath, 'layout')` ([Revalidating All Data
 
 - `basePath: string [dafault: '/']` - base path to invalidate cache for. It defaults to `/`
 
-#### HTTP 
+#### HTTP
 
 Calls specified HTTP endpoint using `fetch`. Useful when your app is separate from PayloadCMS instance and exposes an endpoint to clear the cache.
 
@@ -104,10 +102,10 @@ Calls specified HTTP endpoint using `fetch`. Useful when your app is separate fr
 
 After setting it up:
 
-1.	Go to your PayloadCMS admin panel.
-2.	Click on the “Purge Cache” tab in the sidebar.
-3.	Click the button to run all purgers.
-4.	View real-time results for each purger.
+1. Go to your PayloadCMS admin panel.
+2. Click on the “Purge Cache” tab in the sidebar.
+3. Click the button to run all purgers.
+4. View real-time results for each purger.
 
 ## Contributing
 
