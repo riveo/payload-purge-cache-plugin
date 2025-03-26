@@ -1,6 +1,6 @@
 {
   "name": "@riveo/payload-purge-cache-plugin",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Payload Purge Cache Plugin",
   "license": "MIT",
   "type": "module",
@@ -40,10 +40,12 @@
   "author": "Piotr Rzeczkowski <pr@riveolabs.com> (https://notesofdev.com/)",
   "peerDependencies": {
     "@payloadcms/next": "^3.0.0",
-    "@payloadcms/ui": "^3.0.0",
     "next": "^15.0.0",
     "payload": "^3.0.0",
     "react": "^19.0.0"
+  },
+  "dependencies": {
+    "@payloadcms/ui": "^3.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.23.0",
