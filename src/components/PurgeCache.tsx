@@ -36,7 +36,7 @@ const PurgeCache = async ({
       payload={initPageResult?.req.payload}
       permissions={initPageResult?.permissions}
       searchParams={searchParams}
-      user={initPageResult?.req.user}
+      user={initPageResult?.req.user ?? undefined}
       visibleEntities={initPageResult.visibleEntities}
     >
       <Gutter>
