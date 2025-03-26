@@ -14,7 +14,7 @@ const NavLink = ({ href }: NavLinkClientProps) => {
   return (
     <Link className={`nav__link ${isActive ? 'active' : ''}`} href={href}>
       {isActive && <div className="nav__link-indicator"></div>}
-      <span className="nav__link-label">Cloudflare Cache</span>
+      <span className="nav__link-label">Purge Cache</span>
     </Link>
   );
 };
