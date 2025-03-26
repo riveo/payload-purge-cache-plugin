@@ -11,7 +11,7 @@ const compat = new FlatCompat({
 
 export default tseslint.config([
   {
-    ignores: ['var/*'],
+    ignores: ['var/*', 'dist/*', '.idea/*'],
   },
   js.configs.recommended,
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
