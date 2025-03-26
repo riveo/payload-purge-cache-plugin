@@ -2,7 +2,7 @@ import { type Plugin } from 'payload';
 import {
   type PurgeCachePluginConfig,
   type PurgeCachePluginServerProps,
-} from './types';
+} from './types.js';
 
 const DEFAULT_PATH = '/riveo-purge-cache';
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { Link } from '@payloadcms/ui';
-import { usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation.js';
 
 type NavLinkClientProps = {
   href: string;

@@ -1,4 +1,4 @@
-import { type PurgerAction } from '../types';
+import { type PurgerAction } from '../types.js';
 
 export const getCloudflarePurgerAction = (options: {
   apiKey: string;

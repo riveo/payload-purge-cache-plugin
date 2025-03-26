@@ -1,11 +1,11 @@
 import { DefaultTemplate } from '@payloadcms/next/templates';
 import { Gutter, RenderTitle } from '@payloadcms/ui';
-import { notFound, redirect } from 'next/navigation';
-import { type AdminViewProps } from 'payload';
-import { type PurgeCachePluginServerProps } from '../types';
-import PurgeCacheClient from './PurgeCacheClient';
+import { notFound, redirect } from 'next/navigation.js';
+import { type AdminViewServerProps } from 'payload';
+import { type PurgeCachePluginServerProps } from '../types.js';
+import PurgeCacheClient from './PurgeCacheClient.js';
 
-type CloudflareProps = AdminViewProps & PurgeCachePluginServerProps;
+type CloudflareProps = AdminViewServerProps & PurgeCachePluginServerProps;
 
 const PurgeCache = async ({
   initPageResult,
