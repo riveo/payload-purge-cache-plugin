@@ -1,6 +1,6 @@
 # Payload Purge Cache plugin
 
-This plugin adds a custom page to the Payload CMS admin panel that allows users to manually purge caches across multiple platforms, such as Cloudflare. A single click executes all configured purgers and reports the status of each operation.
+A plugin for [PayloadCMS](https://payloadcms.com/) that integrates cache purging functionalities directly into the admin panel, allowing administrators to efficiently manage and clear cached content across various platforms.
 
 ---
 
@@ -39,21 +39,87 @@ export const config = buildConfig({
 
 ## Configuration
 
-The plugin accepts an object of type `CloudflareCachePluginConfig`.
+
+The plugin accepts an object with the following properties:
+
+- `enabled: boolean`: Enable or disable the plugin. Default is `true`.
+- `path?: string`: URL path for the admin page. Default is `/riveo-purge-cache`.
+- `access?: AccessCallback`: Optional function to control access permissions.
+- `purgers: Purger[]`: Array of purger configurations to be triggered on cache purge.
+
+
+Example configuration:
 
 ```typescript
-type CloudflareCachePluginConfig = {
-  enabled?: boolean;         // Enable/disable the plugin (default: true)
-  path?: string;             // URL path for the admin page (default: '/riveo-purge-cache')
-  access?: AccessCallback;   // Optional access control function
-  purgers: Purger[];         // Array of purgers to be triggered on button click
-};
+purgeCachePlugin({
+  enabled: true,
+  path: '/custom-purge-cache',
+  access: ({ req }) => req.user.role === 'admin',
+  purgers: [
+    {
+      label: 'Next.js',
+      action: getNextjsPurgerAction(),
+    },
+  ],
+});
 ```
+
+### Built in purgers
+
+#### Cloudflare
+
+Purges Cloudflare cache for specified zone.
+
+**Usage:** `getCloudflarePurgerAction({ apiKey, zoneId })`
+
+**Parameters:**
+
+- `options`
+  - `apiKey: string` - Cloudflare API key
+  - `zoneId: string` - ZoneID to purge cache for
+
+#### Next.js
+
+Purges internal Next.js cache.
+Internally it calls `revalidatePath(basePath, 'layout')` ([Revalidating All Data - Next.js docs](https://nextjs.org/docs/app/api-reference/functions/revalidatePath#revalidating-all-data))
+
+**Usage:** `getNextjsPurgerAction('/')`
+
+**Parameters:**
+
+- `basePath: string [dafault: '/']` - base path to invalidate cache for. It defaults to `/`
+
+#### HTTP 
+
+Calls specified HTTP endpoint using `fetch`. Useful when your app is separate from PayloadCMS instance and exposes an endpoint to clear the cache.
+
+**Usage:** `getHttpPurgerAction(endpoint, options)`
+
+**Parameters:**
+
+- `endpoint: RequestInfo`
+- `options?: RequestInit`
 
 ## Usage
 
 After setting it up:
-	1.	Go to your Payload admin panel.
-	2.	Click on the “Purge Cache” tab in the sidebar.
-	3.	Click the button to run all purgers.
-	4.	View real-time results for each purger.
+
+1.	Go to your PayloadCMS admin panel.
+2.	Click on the “Purge Cache” tab in the sidebar.
+3.	Click the button to run all purgers.
+4.	View real-time results for each purger.
+
+## Contributing
+
+We welcome contributions! To contribute:
+
+1. **Fork the Repository**: Click the 'Fork' button at the top right of the repository page.
+2. **Clone Your Fork**: Clone your forked repository to your local machine.
+3. **Create a Branch**: Create a new branch for your feature or bugfix.
+4. **Make Your Changes**: Implement your changes and commit them with clear messages.
+5. **Push to GitHub**: Push your changes to your fork on GitHub.
+6. **Submit a Pull Request**: Open a pull request to the main repository.
+
+## License
+
+This project is licensed under the [MIT License](./LICENSE.md).
