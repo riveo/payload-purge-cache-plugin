@@ -7,7 +7,6 @@ import {
   SuccessIcon,
   Button,
   RenderTitle,
-  useWindowInfo,
 } from '@payloadcms/ui';
 import { useState, useTransition } from 'react';
 import { type Purger } from '../types.js';
@@ -42,8 +41,6 @@ const PurgeCacheClient = ({ purgers }: PurgeCacheButtonProps) => {
   const [isLoading, startTransition] = useTransition();
   const [results, setResults] = useState<{ error?: string }[]>([]);
 
-  const { breakpoints } = useWindowInfo();
-  console.log({ breakpoints });
   const errors = results.filter((value) => !!value && !!value?.error);
 
   const onClick = () => {
