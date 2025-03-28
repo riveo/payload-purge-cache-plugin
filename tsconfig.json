@@ -14,7 +14,7 @@
     "incremental": true,
     "target": "esnext",
     "outDir": "./dist",
-    "sourceMap": true,
+    "sourceMap": false,
     "declaration": true,
     "declarationDir": "./dist"
   },
