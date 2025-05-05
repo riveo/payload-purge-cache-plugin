@@ -32,10 +32,10 @@ export type PurgeCachePluginConfig = {
 /**
  * Function that executes a purge action.
  *
- * @template ErrorType - Type of the error message (defaults to string).
+ * @template ErrorType - Type of the error message.
  * @returns A promise resolving to an object that may contain an error.
  */
-export type PurgerAction<ErrorType = string> = () => Promise<{
+export type PurgerAction<ErrorType> = () => Promise<{
   error?: ErrorType;
 }>;
 
