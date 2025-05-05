@@ -12,7 +12,9 @@ export const getCloudflarePurgerAction = (options: {
         'Cloudflare API token or zone ID is not set. Skipping cache purge.',
       );
 
-      return {};
+      return {
+        error: 'Invalid configuration',
+      };
     }
 
     const endpoint = `https://api.cloudflare.com/client/v4/zones/${options.zoneId}/purge_cache`;
