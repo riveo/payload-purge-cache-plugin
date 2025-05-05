@@ -75,6 +75,10 @@ Purges Cloudflare cache for specified zone.
 - `options`
   - `apiKey: string` - Cloudflare API key
   - `zoneId: string` - ZoneID to purge cache for
+  - `hosts?: string[]` - Optional list of hosts to purge
+  - `tags?: string[]` - Optional list of tags to purge
+  - `prefixes?: string[]` - Optional list of prefixes to purge. A prefix has to include hostname but not scheme e.g.: example.com/prefix
+  - `files?: string[]` - Optional list of specific urls to purge. An url has to include scheme, hostname and path e.g.: https://example.com/full/path
 
 #### Next.js
 
