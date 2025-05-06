@@ -17,24 +17,38 @@
   }
 
   &__purgers {
-    li div {
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li > div:first-child {
       display: flex;
       align-items: center;
       justify-items: start;
     }
 
-    svg {
-      height: calc(var(--base) * 1.5);
-      width: calc(var(--base) * 1.5);
-      margin-left: calc(var(--base) * 0.2);
-    }
-  }
-
-  &__errors {
-    ul {
-      .render-title {
-        margin-bottom: 0;
+    .checkbox-input {
+      .field-label {
+        padding-bottom: 0;
       }
+    }
+
+    .purger-status-container {
+      svg {
+        height: calc(var(--base) * 1.5);
+        width: calc(var(--base) * 1.5);
+        margin-left: calc(var(--base) * 0.2);
+      }
+    }
+
+    .purger-error {
+      color: var(--theme-error-800);
+      border: 1px solid var(--theme-error-250);
+      background-color: var(--theme-error-100);
+      border-radius: 4px;
+      padding: calc(var(--base) * .5);
     }
   }
 }
