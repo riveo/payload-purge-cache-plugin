@@ -30,6 +30,7 @@ export const config = buildConfig({
         {
           label: 'NextJS',
           action: getNextjsPurgerAction(),
+          default: true,
         },
       ],
     }),
@@ -57,6 +58,7 @@ purgeCachePlugin({
     {
       label: 'Next.js',
       action: getNextjsPurgerAction(),
+      default: false,
     },
   ],
 });
