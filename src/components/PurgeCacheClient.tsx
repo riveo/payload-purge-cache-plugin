@@ -6,7 +6,7 @@ import {
   ErrorIcon,
   SuccessIcon,
   Button,
-  RenderTitle,
+  CheckboxInput,
 } from '@payloadcms/ui';
 import { useState, useTransition } from 'react';
 import { type Purger } from '../types.js';
@@ -39,14 +39,33 @@ const PurgerStatus = ({
 
 const PurgeCacheClient = ({ purgers }: PurgeCacheButtonProps) => {
   const [isLoading, startTransition] = useTransition();
-  const [results, setResults] = useState<{ error?: string }[]>([]);
+  const [results, setResults] = useState<({ error?: string } | undefined)[]>(
+    [],
+  );
 
-  const errors = results.filter((value) => !!value && !!value?.error);
+  const [selectedPurgersIds, setSelectedPurgersIds] = useState(
+    purgers.map((purger) => purger.default !== false),
+  );
 
-  const onClick = () => {
+  const togglePurger = (id: number) => {
+    setSelectedPurgersIds((previous) => {
+      return {
+        ...previous,
+        [id]: !previous?.[id],
+      };
+    });
+  };
+
+  const purgeCache = () => {
     startTransition(async () => {
       const results = await Promise.all(
-        purgers.map((purger) => purger.action()),
+        purgers.map((purger, i) => {
+          if (selectedPurgersIds[i]) {
+            return purger.action();
+          }
+
+          return undefined;
+        }),
       );
 
       setResults(results);
@@ -55,42 +74,40 @@ const PurgeCacheClient = ({ purgers }: PurgeCacheButtonProps) => {
 
   return (
     <div className="riveo-purge-cache-plugin-container">
-      <div className="riveo-purge-cache-plugin-container__button-row">
-        <Button onClick={() => onClick()} disabled={isLoading}>
-          Purge cache
-        </Button>
-      </div>
-
       <div className="riveo-purge-cache-plugin-container__purgers">
-        <RenderTitle title="Cache purgers" element="h2" />
-
         <ul>
           {purgers.map(({ label }, i) => (
             <li key={i}>
               <div>
-                {label}
-                <PurgerStatus isLoading={isLoading} result={results?.[i]} />
+                <CheckboxInput
+                  onToggle={() => togglePurger(i)}
+                  checked={selectedPurgersIds[i]}
+                  label={label}
+                  id={`riveo-cache-purger-${i}`}
+                />
+
+                <div className="purger-status-container">
+                  <PurgerStatus
+                    isLoading={selectedPurgersIds[i] && isLoading}
+                    result={results?.[i]}
+                  />
+                </div>
               </div>
+              {results?.[i]?.error && (
+                <pre className="purger-error">
+                  {JSON.stringify(results[i].error)}
+                </pre>
+              )}
             </li>
           ))}
         </ul>
       </div>
 
-      {errors.length > 0 && (
-        <div className="riveo-purge-cache-plugin-container__errors">
-          <RenderTitle title="Purge errors" element="h2" />
-          {errors.map(({ error }, i) => {
-            return (
-              <ul key={i}>
-                <li>
-                  <RenderTitle title={purgers?.[i]?.label} element="h3" />
-                  <pre>{JSON.stringify(error)}</pre>
-                </li>
-              </ul>
-            );
-          })}
-        </div>
-      )}
+      <div className="riveo-purge-cache-plugin-container__button-row">
+        <Button onClick={() => purgeCache()} disabled={isLoading}>
+          Purge selected caches
+        </Button>
+      </div>
     </div>
   );
 };

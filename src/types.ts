@@ -55,6 +55,13 @@ export type Purger<ErrorType = string> = {
    * It has to be a server action.
    */
   action: PurgerAction<ErrorType>;
+
+  /**
+   * Option to deselect purger on purgers list by default (defaults to true)
+   *
+   * When this option is false, the purger will require manual interaction to run.
+   */
+  default?: boolean;
 };
 
 export type PurgeCachePluginServerProps = {
