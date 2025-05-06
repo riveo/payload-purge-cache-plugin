@@ -5,6 +5,8 @@ import { type AdminViewServerProps } from 'payload';
 import { type PurgeCachePluginServerProps } from '../types.js';
 import PurgeCacheClient from './PurgeCacheClient.js';
 
+import './styles.scss';
+
 type CloudflareProps = AdminViewServerProps & PurgeCachePluginServerProps;
 
 const PurgeCache = async ({
