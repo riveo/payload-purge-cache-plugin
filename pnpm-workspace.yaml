@@ -1,0 +1,10 @@
+packages:
+  - packages/*
+
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
+
+publicHoistPattern:
+  - '*eslint*'
+  - '*prettier*'

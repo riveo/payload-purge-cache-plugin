@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 permissions:
   contents: write
@@ -16,13 +16,34 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v3
+    env:
+      BASE_REF: ${{ github.base_ref || 'main' }}
 
-      - name: Test
-        uses: ./.github/actions/check
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Lint
+        run: pnpm --filter "...[origin/${{ env.BASE_REF }}]" run lint
+
+      - name: Check types
+        run: pnpm --filter "...[origin/${{ env.BASE_REF }}]" run typecheck
+
+      - name: Check formatting
+        run: pnpm --filter "...[origin/${{ env.BASE_REF }}]" run format:check
 
   dependabot:
     name: Dependabot auto merge
@@ -38,7 +59,7 @@ jobs:
         id: metadata
         uses: dependabot/fetch-metadata@v1
         with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
 
       - name: Auto-approve Dependabot PR
         run: gh pr review --approve "$PR_URL"

@@ -1,2 +1,3 @@
-/node_modules
+/packages
 /var
+pnpm-lock.yaml

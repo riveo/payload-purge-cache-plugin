@@ -1,67 +1,29 @@
 {
-  "name": "@riveo/payload-purge-cache-plugin",
-  "version": "0.1.1",
-  "description": "Payload Purge Cache Plugin",
-  "license": "MIT",
-  "type": "module",
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    },
-    "./components": {
-      "import": "./dist/exports/components.js",
-      "types": "./dist/exports/components.d.ts"
-    }
-  },
-  "files": [
-    "dist"
-  ],
-  "keywords": [
-    "payload",
-    "cms",
-    "plugin",
-    "typescript",
-    "react",
-    "template",
-    "cache"
-  ],
+  "name": "riveo-payload-plugins",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "prebuild": "mkdir -p dist/components && cp src/components/styles.scss dist/components/styles.scss",
-    "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier \"**/*.{cjs,mjs,js,ts,tsx,json,css,md}\" --write",
-    "format:check": "prettier \"**/*.{cjs,mjs,js,ts,tsx,json,css,md}\" --check",
-    "fix": "eslint . --fix && prettier \"**/*.{cjs,mjs,js,ts,tsx,json,css,md}\" --write",
-    "clean": "rimraf dist",
-    "prepublishOnly": "npm run clean && npm run build"
+    "format": "prettier . --write",
+    "format:check": "prettier . --check"
   },
-  "author": "Piotr Rzeczkowski <pr@riveolabs.com> (https://notesofdev.com/)",
-  "homepage": "https://github.com/riveo/payload-purge-cache-plugin",
-  "peerDependencies": {
-    "@payloadcms/next": "^3.0.0",
-    "next": "^15.0.0",
-    "payload": "^3.0.0",
-    "react": "^19.0.0"
-  },
-  "dependencies": {
-    "@payloadcms/ui": "^3.0.0"
+  "engines": {
+    "node": "^22"
   },
   "devDependencies": {
-    "@eslint/js": "^9.23.0",
-    "@types/node": "^22.5.4",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "eslint": "^9.23.0",
-    "eslint-config-next": "^15.2.3",
-    "eslint-config-prettier": "^10.1.1",
+    "@eslint/js": "^9.26.0",
+    "eslint": "^9.26.0",
+    "eslint-config-next": "^15.3.2",
+    "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-import": "^2.31.0",
     "prettier": "^3.5.3",
-    "rimraf": "^6.0.1",
-    "typescript": "^5.8.2",
-    "typescript-eslint": "^8.27.0"
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.32.1"
+  },
+  "packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39",
+  "dependencies": {
+    "@eslint/eslintrc": "github:eslint/eslintrc"
   }
 }

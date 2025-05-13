@@ -1,6 +1,5 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { FlatCompat } from '@eslint/eslintrc';
-import js from '@eslint/js';
+import eslint from '@eslint/js';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import { flatConfigs as importConfigs } from 'eslint-plugin-import';
 import tseslint from 'typescript-eslint';
@@ -9,27 +8,9 @@ const compat = new FlatCompat({
   baseDirectory: import.meta.dirname,
 });
 
-export default tseslint.config([
-  {
-    ignores: ['var/*', 'dist/*', '.idea/*'],
-  },
-  js.configs.recommended,
-  ...compat.extends('next/core-web-vitals', 'next/typescript'),
-  { ...importConfigs.recommended, plugins: {} },
+const importConfig = tseslint.config(
+  importConfigs.recommended,
   importConfigs.typescript,
-  tseslint.configs.recommendedTypeChecked,
-  tseslint.configs.stylisticTypeChecked,
-  eslintConfigPrettier,
-  {
-    languageOptions: {
-      parserOptions: {
-        projectService: {
-          allowDefaultProject: ['*.config.mjs'],
-        },
-        tsconfigRootDir: import.meta.dirname,
-      },
-    },
-  },
   {
     rules: {
       // https://typescript-eslint.io/troubleshooting/typed-linting/performance/#eslint-plugin-import
@@ -62,7 +43,18 @@ export default tseslint.config([
       'import/consistent-type-specifier-style': ['error', 'prefer-inline'],
     },
   },
+);
+
+const tsEslintConfig = tseslint.config(
   {
+    extends: [tseslint.configs.recommended, tseslint.configs.stylistic],
+  },
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    extends: [
+      tseslint.configs.recommendedTypeChecked,
+      tseslint.configs.stylisticTypeChecked,
+    ],
     rules: {
       '@typescript-eslint/consistent-type-definitions': 0,
       '@typescript-eslint/consistent-type-imports': [
@@ -71,15 +63,75 @@ export default tseslint.config([
       ],
       '@typescript-eslint/no-unused-vars': [
         'error',
-        { argsIgnorePattern: '^_', destructuredArrayIgnorePattern: '^_' },
+        {
+          argsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
+        },
       ],
-      'no-console': ['error', { allow: ['error', 'warn'] }],
-      'class-methods-use-this': 0,
+    },
+    languageOptions: {
+      parserOptions: {
+        projectService: {
+          allowDefaultProject: ['./eslint.config.mjs'],
+        },
+        tsconfigRootDir: import.meta.dirname,
+      },
     },
   },
+);
+
+const customConfig = tseslint.config({
+  rules: {
+    'no-console': ['error', { allow: ['error', 'warn', 'info'] }],
+    'class-methods-use-this': 0,
+    '@next/next/no-html-link-for-pages': 0,
+  },
+});
+
+/** @type {ConfigArray} */
+export const eslintConfigBase = tseslint.config(
   {
-    rules: {
-      '@next/next/no-html-link-for-pages': 0,
-    },
+    ignores: ['var/*'],
   },
-]);
+  eslint.configs.recommended,
+  importConfig,
+  tsEslintConfig,
+  eslintConfigPrettier,
+  customConfig,
+);
+
+/** @type {ConfigArray} */
+export const eslintConfigNext = tseslint.config(
+  {
+    ignores: ['var/*'],
+  },
+  compat.extends('next/core-web-vitals'),
+  eslint.configs.recommended,
+  importConfig.map((config) => {
+    if (!!config.plugins && 'import' in config.plugins) {
+      const plugins = { ...config.plugins };
+      delete plugins.import;
+
+      return {
+        ...config,
+        plugins,
+      };
+    }
+
+    return config;
+  }),
+  tsEslintConfig,
+  eslintConfigPrettier,
+  customConfig,
+);
+
+/** @type {ConfigArray} */
+const config = tseslint.config(
+  {
+    ignores: ['packages/*'],
+  },
+  eslintConfigBase,
+);
+
+export default config;
