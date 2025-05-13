@@ -1,6 +1,3 @@
-/** @type {import("prettier").Options} */
-const config = {
-  singleQuote: true,
-};
+import config from '../../prettier.config.mjs';
 
 export default config;
