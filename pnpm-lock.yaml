@@ -6,7 +6,7 @@ settings:
 
 importers:
 
-  .:
+  packages/purge-cache-plugin:
     dependencies:
       '@payloadcms/next':
         specifier: ^3.0.0
