@@ -16,6 +16,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:
+      BASE_REF: ${{ github.base_ref || 'main' }}
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -30,14 +33,17 @@ jobs:
           node-version: 22
           cache: 'pnpm'
 
-      - name: Run checks
-        run: |
-          # If this is a PR, use its base branch; otherwise default to main
-          BASE_REF="${{ github.event.pull_request.base.ref || 'main' }}"
+      - name: Install dependencies
+        run: pnpm install
 
-          pnpm --filter "...[origin/${BASE_REF}]" run lint
-          pnpm --filter "...[origin/${BASE_REF}]" run typecheck
-          pnpm --filter "...[origin/${BASE_REF}]" run format:check
+      - name: Lint
+        run: pnpm --filter "...[origin/${{ env.BASE_REF }}]" run lint
+
+      - name: Check types
+        run: pnpm --filter "...[origin/${{ env.BASE_REF }}]" run typecheck
+
+      - name: Check formatting
+        run: pnpm --filter "...[origin/${{ env.BASE_REF }}]" run format:check
 
   dependabot:
     name: Dependabot auto merge
