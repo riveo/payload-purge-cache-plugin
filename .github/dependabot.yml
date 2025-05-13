@@ -1,9 +1,9 @@
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: 'pnpm'
+    directory: '/'
     schedule:
-      interval: "daily"
-    target-branch: "main"
+      interval: 'daily'
+    target-branch: 'main'
     labels:
-      - "dependencies"
+      - 'dependencies'
