@@ -89,6 +89,7 @@ const customConfig = {
   },
 };
 
+/** @type {ConfigArray} */
 export const eslintConfigBase = tseslint.config(
   {
     ignores: ["var/*"],
@@ -100,6 +101,7 @@ export const eslintConfigBase = tseslint.config(
   customConfig,
 );
 
+/** @type {ConfigArray} */
 export const eslintConfigNext = tseslint.config(
   {
     ignores: ["var/*"],
@@ -124,9 +126,12 @@ export const eslintConfigNext = tseslint.config(
   customConfig,
 );
 
-export default tseslint.config(
+/** @type {ConfigArray} */
+const config = tseslint.config(
   {
     ignores: ["packages/*"],
   },
   eslintConfigBase,
 );
+
+export default config;
