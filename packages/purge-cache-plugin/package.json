@@ -47,7 +47,7 @@
     "react": "^19.0.0"
   },
   "dependencies": {
-    "@payloadcms/ui": "^3.37.0"
+    "@payloadcms/ui": "^3.39.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.26.0",
