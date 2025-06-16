@@ -50,7 +50,7 @@
     "@payloadcms/ui": "^3.39.1"
   },
   "devDependencies": {
-    "@eslint/js": "^9.28.0",
+    "@eslint/js": "^9.29.0",
     "@types/node": "^22.15.30",
     "@types/react": "^19.1.4",
     "@types/react-dom": "^19.1.5",
