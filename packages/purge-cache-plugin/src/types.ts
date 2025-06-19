@@ -1,4 +1,4 @@
-import { type User } from 'payload';
+import type { User } from 'payload';
 
 /**
  * Access control callback type used to determine if a user has permission

@@ -1,5 +1,5 @@
 import { revalidatePath } from 'next/cache.js';
-import { type PurgerAction } from '../types.js';
+import type { PurgerAction } from '../types.js';
 
 export const getNextjsPurgerAction = (basePath = '/'): PurgerAction<void> => {
   // eslint-disable-next-line @typescript-eslint/require-await

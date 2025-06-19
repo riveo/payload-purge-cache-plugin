@@ -1,4 +1,4 @@
-import { type PurgerAction } from '../types.js';
+import type { PurgerAction } from '../types.js';
 
 type CloudflarePurgerFactoryOptions = {
   apiKey: string;

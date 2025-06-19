@@ -49,7 +49,7 @@ const importConfig = tseslint.config(
       ],
       'import/no-cycle': ['error'],
       'import/no-duplicates': ['error', { 'prefer-inline': true }],
-      'import/consistent-type-specifier-style': ['error', 'prefer-inline'],
+      'import/consistent-type-specifier-style': 0,
     },
   },
 );
@@ -69,6 +69,7 @@ const tsEslintConfig = tseslint.config(
         'error',
         { prefer: 'type-imports', fixStyle: 'inline-type-imports' },
       ],
+      '@typescript-eslint/no-import-type-side-effects': 'error',
     },
   },
   {
@@ -123,7 +124,7 @@ export const eslintConfigNext = tseslint.config(
 
 export default tseslint.config(
   {
-    ignores: ['packages/*'],
+    ignores: ['packages/'],
   },
   {
     languageOptions: {

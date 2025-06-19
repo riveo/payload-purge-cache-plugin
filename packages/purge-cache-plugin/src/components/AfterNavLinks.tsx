@@ -1,5 +1,5 @@
-import { type AdminViewServerProps } from 'payload';
-import { type PurgeCachePluginServerProps } from '../types.js';
+import type { AdminViewServerProps } from 'payload';
+import type { PurgeCachePluginServerProps } from '../types.js';
 import NavLink from './NavLink.js';
 
 type NavLinkProps = AdminViewServerProps & PurgeCachePluginServerProps;

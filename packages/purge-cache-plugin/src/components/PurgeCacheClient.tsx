@@ -9,7 +9,7 @@ import {
   CheckboxInput,
 } from '@payloadcms/ui';
 import { useState, useTransition } from 'react';
-import { type Purger } from '../types.js';
+import type { Purger } from '../types.js';
 
 type PurgeCacheButtonProps = {
   purgers: Purger[];
