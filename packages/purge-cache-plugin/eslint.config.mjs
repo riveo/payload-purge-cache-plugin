@@ -15,6 +15,11 @@ const config = [
     },
   },
   ...eslintConfigNext,
+  {
+    rules: {
+      '@next/next/no-html-link-for-pages': 0,
+    },
+  },
 ];
 
 export default config;
