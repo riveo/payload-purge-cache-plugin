@@ -25,8 +25,7 @@ type CloudflarePurgerFactoryOptions = {
 
 export const getCloudflarePurgerAction = (
   options: CloudflarePurgerFactoryOptions,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-): PurgerAction<any> => {
+): PurgerAction => {
   return async () => {
     'use server';
     if (!options.apiKey || !options.zoneId) {
@@ -58,8 +57,7 @@ export const getCloudflarePurgerAction = (
     });
 
     if (!response.ok) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      return { error: await response.json() };
+      return { error: await response.text() };
     }
 
     return {};

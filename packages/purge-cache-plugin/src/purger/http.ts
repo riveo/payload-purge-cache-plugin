@@ -3,7 +3,7 @@ import type { PurgerAction } from '../types.js';
 export const getHttpPurgerAction = (
   endpoint: RequestInfo,
   options?: RequestInit,
-): PurgerAction<number> => {
+): PurgerAction => {
   return async () => {
     'use server';
 
@@ -11,13 +11,13 @@ export const getHttpPurgerAction = (
       const response = await fetch(endpoint, options);
 
       if (response.status >= 400) {
-        return { error: response.status };
+        return { error: `${response.status} ${await response.text()}` };
       }
 
       return {};
     } catch (e) {
       console.error(e);
-      return { error: 500 };
+      return { error: '500' };
     }
   };
 };
