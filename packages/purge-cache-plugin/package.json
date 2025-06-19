@@ -47,15 +47,15 @@
     "react": "^19.0.0"
   },
   "dependencies": {
-    "@payloadcms/ui": "^3.39.1"
+    "@payloadcms/ui": "^3.43.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.28.0",
-    "@types/node": "^22.15.30",
-    "@types/react": "^19.1.4",
-    "@types/react-dom": "^19.1.5",
+    "@eslint/js": "^9.29.0",
+    "@types/node": "^22.15.32",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
     "eslint": "^9.29.0",
-    "eslint-config-next": "^15.3.2",
+    "eslint-config-next": "^15.3.4",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-import": "^2.31.0",
     "prettier": "^3.5.3",
