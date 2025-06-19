@@ -42,12 +42,10 @@
   "homepage": "https://github.com/riveo/payload-packages",
   "peerDependencies": {
     "@payloadcms/next": "^3.0.0",
+    "@payloadcms/ui": "^3.0.0",
     "next": "^15.0.0",
     "payload": "^3.0.0",
     "react": "^19.0.0"
-  },
-  "dependencies": {
-    "@payloadcms/ui": "^3.43.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",
