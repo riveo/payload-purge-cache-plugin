@@ -1,0 +1,9 @@
+/.next
+/node_modules
+/package-lock.json
+/public
+/next-env.d.ts
+/var
+/src/app/(payload)/*
+/src/payload-types.ts
+/tsconfig.tsbuildinfo
