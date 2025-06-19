@@ -19,7 +19,7 @@ const PurgerStatus = ({
   isLoading,
   result,
 }: {
-  isLoading: boolean;
+  isLoading?: boolean;
   result?: { error?: string };
 }) => {
   if (isLoading) {
