@@ -13,6 +13,13 @@
     "incremental": true,
     "target": "esnext",
     "sourceMap": false,
-    "declaration": true
+    "declaration": true,
+
+    "moduleDetection": "force",
+    "verbatimModuleSyntax": true,
+
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "strictNullChecks": true
   }
 }
