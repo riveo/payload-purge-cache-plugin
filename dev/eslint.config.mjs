@@ -3,7 +3,7 @@ import { eslintConfigNext } from '../eslint.config.mjs';
 
 const config = [
   {
-    ignores: ['.next', 'var/*', 'src/app/(payload)/*'],
+    ignores: ['.next', 'var/*', 'src/app/(payload)/*', 'src/payload-types.ts'],
   },
   {
     languageOptions: {
