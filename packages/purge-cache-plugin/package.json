@@ -29,6 +29,7 @@
   "scripts": {
     "prebuild": "mkdir -p dist/components && cp src/components/styles.scss dist/components/styles.scss",
     "build": "tsc",
+    "build:types": "tsc --emitDeclarationOnly",
     "test": "echo \"Error: no test specified\" && exit 1",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
