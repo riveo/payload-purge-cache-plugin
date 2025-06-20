@@ -9,7 +9,7 @@ import {
   CheckboxInput,
 } from '@payloadcms/ui';
 import { useState, useTransition } from 'react';
-import { type Purger } from '../types.js';
+import type { Purger } from '../types.js';
 
 type PurgeCacheButtonProps = {
   purgers: Purger[];
@@ -19,7 +19,7 @@ const PurgerStatus = ({
   isLoading,
   result,
 }: {
-  isLoading: boolean;
+  isLoading?: boolean;
   result?: { error?: string };
 }) => {
   if (isLoading) {

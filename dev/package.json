@@ -1,0 +1,56 @@
+{
+  "name": "payload-packages-dev-instance",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A blank template to get started with Payload 3.0",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "generate:importmap": "payload generate:importmap",
+    "generate:types": "payload generate:types",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "payload": "payload",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@payloadcms/db-sqlite": "^3.43.0",
+    "@payloadcms/next": "^3.43.0",
+    "@payloadcms/richtext-lexical": "^3.43.0",
+    "@payloadcms/ui": "^3.43.0",
+    "@riveo/payload-purge-cache-plugin": "workspace:*",
+    "graphql": "^16.11.0",
+    "next": "^15.3.4",
+    "payload": "^3.43.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "sharp": "^0.34.2"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.29.0",
+    "@types/node": "^22.15.32",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "eslint": "^9.29.0",
+    "eslint-config-next": "^15.3.4",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-import": "^2.31.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.34.1"
+  },
+  "engines": {
+    "node": "^22.11"
+  },
+  "optionalDependencies": {
+    "@libsql/darwin-arm64": "0.4.7",
+    "@libsql/linux-arm64-gnu": "0.4.7",
+    "@libsql/linux-x64-gnu": "0.4.7"
+  }
+}
