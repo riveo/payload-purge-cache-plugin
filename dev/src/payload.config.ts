@@ -2,6 +2,9 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { sqliteAdapter } from '@payloadcms/db-sqlite';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
+import purgeCachePlugin, {
+  getNextjsPurgerAction,
+} from '@riveo/payload-purge-cache-plugin';
 import { buildConfig } from 'payload';
 import sharp from 'sharp';
 import { migrations } from '../migrations';
@@ -43,5 +46,14 @@ export default buildConfig({
     prodMigrations: migrations,
   }),
   sharp,
-  plugins: [],
+  plugins: [
+    purgeCachePlugin({
+      purgers: [
+        {
+          label: 'Frontend',
+          action: getNextjsPurgerAction('/'),
+        },
+      ],
+    }),
+  ],
 });
